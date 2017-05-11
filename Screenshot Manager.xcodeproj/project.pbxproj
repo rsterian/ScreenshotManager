@@ -11,6 +11,9 @@
 		741E94051EC1373800DF93C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741E94041EC1373800DF93C8 /* ViewController.swift */; };
 		741E94071EC1373800DF93C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741E94061EC1373800DF93C8 /* Assets.xcassets */; };
 		741E940A1EC1373800DF93C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741E94081EC1373800DF93C8 /* Main.storyboard */; };
+		741E941D1EC184A600DF93C8 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741E941C1EC184A600DF93C8 /* Automator.framework */; };
+		747C0E321EC3D9F600FE8F1B /* find_dir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C0E311EC3D9F600FE8F1B /* find_dir.swift */; };
+		74FA77FA1EC1929A00969C3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FA77F91EC1929A00969C3A /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,10 @@
 		741E94061EC1373800DF93C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		741E94091EC1373800DF93C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		741E940B1EC1373800DF93C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		741E941A1EC1812500DF93C8 /* Screenshot Manager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Screenshot Manager.entitlements"; sourceTree = "<group>"; };
+		741E941C1EC184A600DF93C8 /* Automator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Automator.framework; path = System/Library/Frameworks/Automator.framework; sourceTree = SDKROOT; };
+		747C0E311EC3D9F600FE8F1B /* find_dir.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = find_dir.swift; path = ../../../.Trash/find_dir.swift; sourceTree = "<group>"; };
+		74FA77F91EC1929A00969C3A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +34,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74FA77FA1EC1929A00969C3A /* Foundation.framework in Frameworks */,
+				741E941D1EC184A600DF93C8 /* Automator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +47,7 @@
 			children = (
 				741E94011EC1373800DF93C8 /* Screenshot Manager */,
 				741E94001EC1373800DF93C8 /* Products */,
+				741E941B1EC184A500DF93C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,13 +62,24 @@
 		741E94011EC1373800DF93C8 /* Screenshot Manager */ = {
 			isa = PBXGroup;
 			children = (
-				741E94021EC1373800DF93C8 /* AppDelegate.swift */,
+				747C0E311EC3D9F600FE8F1B /* find_dir.swift */,
+				741E941A1EC1812500DF93C8 /* Screenshot Manager.entitlements */,
 				741E94041EC1373800DF93C8 /* ViewController.swift */,
+				741E94021EC1373800DF93C8 /* AppDelegate.swift */,
 				741E94061EC1373800DF93C8 /* Assets.xcassets */,
 				741E94081EC1373800DF93C8 /* Main.storyboard */,
 				741E940B1EC1373800DF93C8 /* Info.plist */,
 			);
 			path = "Screenshot Manager";
+			sourceTree = "<group>";
+		};
+		741E941B1EC184A500DF93C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				74FA77F91EC1929A00969C3A /* Foundation.framework */,
+				741E941C1EC184A600DF93C8 /* Automator.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +115,11 @@
 					741E93FE1EC1373700DF93C8 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -134,6 +160,7 @@
 			files = (
 				741E94051EC1373800DF93C8 /* ViewController.swift in Sources */,
 				741E94031EC1373800DF93C8 /* AppDelegate.swift in Sources */,
+				747C0E321EC3D9F600FE8F1B /* find_dir.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +272,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Screenshot Manager/Screenshot Manager.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Screenshot Manager/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -258,6 +286,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Screenshot Manager/Screenshot Manager.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Screenshot Manager/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -286,6 +315,7 @@
 				741E94101EC1373800DF93C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
