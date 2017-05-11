@@ -13,7 +13,6 @@
 		741E940A1EC1373800DF93C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741E94081EC1373800DF93C8 /* Main.storyboard */; };
 		741E941D1EC184A600DF93C8 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 741E941C1EC184A600DF93C8 /* Automator.framework */; };
 		747C0E321EC3D9F600FE8F1B /* find_dir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C0E311EC3D9F600FE8F1B /* find_dir.swift */; };
-		747C0E341EC418E600FE8F1B /* find_dir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C0E331EC418E600FE8F1B /* find_dir.swift */; };
 		74FA77FA1EC1929A00969C3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FA77F91EC1929A00969C3A /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +26,6 @@
 		741E941A1EC1812500DF93C8 /* Screenshot Manager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Screenshot Manager.entitlements"; sourceTree = "<group>"; };
 		741E941C1EC184A600DF93C8 /* Automator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Automator.framework; path = System/Library/Frameworks/Automator.framework; sourceTree = SDKROOT; };
 		747C0E311EC3D9F600FE8F1B /* find_dir.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = find_dir.swift; path = ../../../.Trash/find_dir.swift; sourceTree = "<group>"; };
-		747C0E331EC418E600FE8F1B /* find_dir.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = find_dir.swift; sourceTree = SOURCE_ROOT; };
 		74FA77F91EC1929A00969C3A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -65,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				747C0E311EC3D9F600FE8F1B /* find_dir.swift */,
-				747C0E331EC418E600FE8F1B /* find_dir.swift */,
 				741E941A1EC1812500DF93C8 /* Screenshot Manager.entitlements */,
 				741E94041EC1373800DF93C8 /* ViewController.swift */,
 				741E94021EC1373800DF93C8 /* AppDelegate.swift */,
@@ -161,7 +158,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				747C0E341EC418E600FE8F1B /* find_dir.swift in Sources */,
 				741E94051EC1373800DF93C8 /* ViewController.swift in Sources */,
 				741E94031EC1373800DF93C8 /* AppDelegate.swift in Sources */,
 				747C0E321EC3D9F600FE8F1B /* find_dir.swift in Sources */,
