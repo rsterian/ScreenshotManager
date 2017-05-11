@@ -49,3 +49,19 @@ func get_dir() -> String{
     
     return url_string
 }
+
+func make_temp(path: String){
+    
+    print("trying to make a directory at ")
+    
+    let fm = FileManager()
+    do{
+        try fm.createDirectory(atPath: path + "temp/", withIntermediateDirectories: false, attributes: nil)
+    } catch{
+        print("caught an error")
+    }
+    print("hello")
+}
+
+
+
