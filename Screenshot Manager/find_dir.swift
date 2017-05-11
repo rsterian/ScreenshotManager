@@ -65,8 +65,9 @@ func make_temp(path: String){
         print("trying to make a directory at ")
         print(full_path)
         try fm.createDirectory(atPath: full_path, withIntermediateDirectories: false, attributes: nil)
-    } catch{
-        print("Error: Invalid pathname")
+    } catch let error as NSError{
+        //print("Error: Invalid pathname")
+        print(error.description)
     }
 }
 
