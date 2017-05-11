@@ -52,11 +52,18 @@ func get_dir() -> String{
 
 func make_temp(path: String){
     
-    print("trying to make a directory at ")
+    print("in make_temp")
     
     let fm = FileManager()
     do{
-        try fm.createDirectory(atPath: path + "temp/", withIntermediateDirectories: false, attributes: nil)
+        let full_path:String = path + "/temp/"
+        if(fm.fileExists(atPath: full_path)){
+            //temp already exists
+            return
+        }
+        print("trying to make a directory at ")
+        print(full_path)
+        try fm.createDirectory(atPath: full_path, withIntermediateDirectories: false, attributes: nil)
     } catch{
         print("caught an error")
     }
