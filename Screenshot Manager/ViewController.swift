@@ -33,6 +33,8 @@ class ViewController: NSViewController {
     @IBOutlet var textbar: NSTextField!
     @IBOutlet var pathname_input: NSTextField!
     
+    var pathname:String = ""
+    
     @IBAction func press_sb(_ sender: NSButton) {
         if(pathname_input.stringValue != ""){
             let path:String = pathname_input.stringValue
@@ -43,7 +45,7 @@ class ViewController: NSViewController {
             textbar.stringValue = "blank"
         }
         
-        let pathname:String = get_dir()
+        pathname = get_dir()
         if(pathname == "ERROR"){
             exit(EXIT_FAILURE)
         } else if(pathname == "bad"){
@@ -56,6 +58,8 @@ class ViewController: NSViewController {
     
     @IBAction func press_gb(_ sender: NSButton) {
         print("pressed go!")
+        
+        make_temp(path: pathname)
     }
 
     
