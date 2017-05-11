@@ -59,6 +59,8 @@ class ViewController: NSViewController {
     @IBAction func press_gb(_ sender: NSButton) {
         print("pressed go!")
         
+        pathname = pathname_input.stringValue
+        
         make_temp(path: pathname)
     }
 

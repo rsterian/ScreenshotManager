@@ -59,15 +59,15 @@ func make_temp(path: String){
         let full_path:String = path + "/temp/"
         if(fm.fileExists(atPath: full_path)){
             //temp already exists
+            print("path already exists, but that's okay")
             return
         }
         print("trying to make a directory at ")
         print(full_path)
         try fm.createDirectory(atPath: full_path, withIntermediateDirectories: false, attributes: nil)
     } catch{
-        print("caught an error")
+        print("Error: Invalid pathname")
     }
-    print("hello")
 }
 
 
