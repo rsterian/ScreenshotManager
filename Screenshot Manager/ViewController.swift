@@ -85,16 +85,26 @@ class ViewController: NSViewController {
         print("pathname is " + pathname)
         monitor = FileSystemEventMonitor(
             pathsToWatch: [pathname],
-            latency: 1,
+            latency: 0,
             watchRoot: true,
             queue: DispatchQueue.main) { (events: [FileSystemEvent])->() in
                 print(events)
                 print("MODIFICATION")
                 print(events.count)
+                print(events[0].path)
+                print("================")
         }
-        //eonil_stuff(path: pathname)
+        
     }
-
+    
+    //TODO:
+    //get frontmost application on FSEvent (line 91ish)
+    //find new screenshot on desktop
+    //move screenshot to appropriate directory based on app
+    //      create directory if it doesn't exist
+    //clean up
+    //      real buttons, consolidate functions
+    //doublecheck that the timestamps are correct
 
 }
 
