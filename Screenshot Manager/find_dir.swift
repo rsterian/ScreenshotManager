@@ -79,15 +79,19 @@ func make_temp(path: String){
 //doesn't actually check anything yet
 func check_for_updates(path: String){
     print("in check_for_updates")
+    if(path == ""){
+        return
+    }
     print(path)
     let fm = FileManager()
     do{
-        try print(fm.subpathsOfDirectory(atPath: path))
+        try print(fm.contentsOfDirectory(atPath: path))
     } catch let error as NSError{
         print("caught")
-        print(error.description)
+        //print(error.description)
         print(error.localizedFailureReason!)
     }
+    
 }
 
 func print_running_app(){
@@ -98,5 +102,10 @@ func print_running_app(){
     sleep(5)
     print("FRONTMOST APP IS ")
     print(workspace.frontmostApplication!.localizedName!)
+}
+
+
+func notify_on_screenshot(){
+  
 }
 

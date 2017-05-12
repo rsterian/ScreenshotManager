@@ -62,8 +62,6 @@ class ViewController: NSViewController {
         pathname = pathname_input.stringValue
         
         make_temp(path: pathname)
-        
-        check_for_updates(path: pathname)
     }
 
     
