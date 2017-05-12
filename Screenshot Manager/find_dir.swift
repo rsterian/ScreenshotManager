@@ -105,18 +105,21 @@ func print_running_app(){
     print(workspace.frontmostApplication!.localizedName!)
 }
 
-func eonil_stuff(path: String) -> FileSystemEventMonitor{
-    let	s1 = FileSystemEventMonitor(
-        pathsToWatch: [path],
-        latency: 1,
-        watchRoot: true,
-        queue: DispatchQueue.main) { (events: [FileSystemEvent])->() in
-            print(events)
-    }
-    return s1
+//http://stackoverflow.com/questions/39513258/get-current-date-in-swift-3
+//http://www.unicode.org/reports/tr35/tr35-25.html#Date_Format_Patterns
+func get_format_time() -> String{
+    let date = Date()
+    let day_formatter = DateFormatter()
+    day_formatter.dateFormat = "yyyy-MM-dd 'at' h.mm.ss a"
+    let result = day_formatter.string(from: date)
+    //print(result)
+    return result
 }
 
-func eonil_callback(){
-    print("ayy eonil")
+func match_handler(path: String){
+    print("It's a match at " + path)
+    let workspace = NSWorkspace()
+    let frontmost:String = workspace.frontmostApplication!.localizedName!
+    
+    
 }
-

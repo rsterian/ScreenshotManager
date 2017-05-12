@@ -82,29 +82,43 @@ class ViewController: NSViewController {
     }
     
     @IBAction func do_eonil(_ sender: NSButton) {
+        var full:String
+        if(pathname.characters.last == "/"){
+            full = pathname + "Screen Shot "
+        } else {
+            full = pathname + "/Screen Shot "
+        }
         print("pathname is " + pathname)
         monitor = FileSystemEventMonitor(
             pathsToWatch: [pathname],
             latency: 0,
             watchRoot: true,
             queue: DispatchQueue.main) { (events: [FileSystemEvent])->() in
-                print(events)
-                print("MODIFICATION")
-                print(events.count)
-                print(events[0].path)
-                print("================")
+                //print(events)
+//                print("================")
+//                print("MODIFICATION")
+//                //print(events.count)
+//                print(events[0].path)
+//                //print(events[0].flag)
+//                print(full + get_format_time() + ".png")
+//                print("================")
+                
+                if(events[0].path == full + get_format_time() + ".png"){
+                    match_handler(path: full+get_format_time()+".png")
+                }
+                
         }
-        
+        //get_format_time()
     }
     
     //TODO:
     //get frontmost application on FSEvent (line 91ish)
-    //find new screenshot on desktop
+    //find new screenshot on desktop DONE
     //move screenshot to appropriate directory based on app
     //      create directory if it doesn't exist
     //clean up
     //      real buttons, consolidate functions
-    //doublecheck that the timestamps are correct
+    //doublecheck that the timestamps are correct DONE?
 
 }
 
