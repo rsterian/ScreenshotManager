@@ -66,12 +66,37 @@ func make_temp(path: String){
     
     do{
         try fm.createDirectory(atPath: full_path, withIntermediateDirectories: false, attributes: nil)
+        print("Success! Directory created")
     } catch let error as NSError{
         //print("Error: Invalid pathname")
         print(error.description)
         print(error.localizedFailureReason!)
     }
+    
 }
 
+//TODO
+//doesn't actually check anything yet
+func check_for_updates(path: String){
+    print("in check_for_updates")
+    print(path)
+    let fm = FileManager()
+    do{
+        try print(fm.subpathsOfDirectory(atPath: path))
+    } catch let error as NSError{
+        print("caught")
+        print(error.description)
+        print(error.localizedFailureReason!)
+    }
+}
 
+func print_running_app(){
+    let workspace = NSWorkspace()
+    for element in workspace.runningApplications{
+        print(element.localizedName!)
+    }
+    sleep(5)
+    print("FRONTMOST APP IS ")
+    print(workspace.frontmostApplication!.localizedName!)
+}
 
