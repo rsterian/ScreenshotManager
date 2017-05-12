@@ -34,63 +34,77 @@ class ViewController: NSViewController {
     
     private var	monitor	=	nil as FileSystemEventMonitor?
     
-    @IBOutlet var select_button: NSButton!
-    @IBOutlet weak var go_button: NSButton!
-    @IBOutlet var textbar: NSTextField!
+    @IBOutlet var desktop_select_button: NSButton!
+    @IBOutlet var save_location_select_button: NSButton!
+    //@IBOutlet var go_button: NSButton!
+    //@IBOutlet var textbar: NSTextField!
     @IBOutlet var pathname_input: NSTextField!
+    @IBOutlet var pathname_destination: NSTextField!
     
-    var pathname:String = ""
+    var pathname_desktop:String = ""
+    var pathname_save_location:String = ""
     
     @IBAction func press_sb(_ sender: NSButton) {
-        if(pathname_input.stringValue != ""){
-            let path:String = pathname_input.stringValue
-            
-            textbar.stringValue = "You entered " + path
-            
-        } else {
-            textbar.stringValue = "blank"
-        }
+//        if(pathname_input.stringValue != ""){
+//            let path:String = pathname_input.stringValue
+//            
+//            textbar.stringValue = "You entered " + path
+//            
+//        } else {
+//            textbar.stringValue = "blank"
+//        }
         
-        pathname = get_dir()
-        if(pathname == "ERROR"){
+        pathname_desktop = get_dir()
+        if(pathname_desktop == "ERROR"){
             exit(EXIT_FAILURE)
-        } else if(pathname == "bad"){
+        } else if(pathname_desktop == "bad"){
             return
         } //otherwise, pathname is valid
         
-        print("received " + pathname)
-        pathname_input.stringValue = pathname
+        print("received " + pathname_desktop)
+        pathname_input.stringValue = pathname_desktop
     }
+    
+    @IBAction func press_save_button(_ sender: NSButton) {
+        pathname_save_location = get_dir()
+        if(pathname_save_location == "ERROR"){
+            exit(EXIT_FAILURE)
+        } else if(pathname_save_location == "bad"){
+            return
+        }
+        
+        pathname_destination.stringValue = pathname_save_location
+    }
+    
     
     @IBAction func press_gb(_ sender: NSButton) {
         print("pressed go!")
         
-        pathname = pathname_input.stringValue
-        
-        make_temp(path: pathname)
+        pathname_desktop = pathname_input.stringValue
+        make_temp(path: pathname_desktop)
     }
 
     
-    @IBAction func test_check_for_updates(_ sender: NSButton) {
-        pathname = pathname_input.stringValue
-        check_for_updates(path: pathname)
-    }
-    
-    @IBAction func test_print_running_app(_ sender: NSButton) {
-        //pathname = pathname_input.stringValue
-        print_running_app()
-    }
+//    @IBAction func test_check_for_updates(_ sender: NSButton) {
+//        pathname = pathname_input.stringValue
+//        check_for_updates(path: pathname)
+//    }
+//    
+//    @IBAction func test_print_running_app(_ sender: NSButton) {
+//        //pathname = pathname_input.stringValue
+//        print_running_app()
+//    }
     
     @IBAction func do_eonil(_ sender: NSButton) {
         var full:String
-        if(pathname.characters.last == "/"){
-            full = pathname + "Screen Shot "
+        if(pathname_desktop.characters.last == "/"){
+            full = pathname_desktop + "Screen Shot "
         } else {
-            full = pathname + "/Screen Shot "
+            full = pathname_desktop + "/Screen Shot "
         }
-        print("pathname is " + pathname)
+        print("pathname is " + pathname_desktop)
         monitor = FileSystemEventMonitor(
-            pathsToWatch: [pathname],
+            pathsToWatch: [pathname_desktop],
             latency: 0,
             watchRoot: true,
             queue: DispatchQueue.main) { (events: [FileSystemEvent])->() in
