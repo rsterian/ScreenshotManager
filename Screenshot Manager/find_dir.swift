@@ -8,6 +8,7 @@
 
 import Cocoa
 import Foundation
+import EonilFileSystemEvents
 
 func compHandler(input: Int) -> Void{
     print(String(input) + " in the comphandler")
@@ -104,8 +105,18 @@ func print_running_app(){
     print(workspace.frontmostApplication!.localizedName!)
 }
 
+func eonil_stuff(path: String) -> FileSystemEventMonitor{
+    let	s1 = FileSystemEventMonitor(
+        pathsToWatch: [path],
+        latency: 1,
+        watchRoot: true,
+        queue: DispatchQueue.main) { (events: [FileSystemEvent])->() in
+            print(events)
+    }
+    return s1
+}
 
-func notify_on_screenshot(){
-  
+func eonil_callback(){
+    print("ayy eonil")
 }
 

@@ -6,6 +6,9 @@
 //  Copyright © 2017 rileyq. All rights reserved.
 //
 
+//  Using https://github.com/eonil/FileSystemEvents
+//  MIT License
+
 //http://stackoverflow.com/questions/24696044/nsfilemanager-fileexistsatpathisdirectory-and-swift
 //http://stackoverflow.com/questions/12153504/accessing-the-desktop-in-a-sandboxed-app
 
@@ -13,6 +16,7 @@
 
 import Cocoa
 import Foundation
+import EonilFileSystemEvents
 
 class ViewController: NSViewController {
 
@@ -27,7 +31,9 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
+    
+    private var	monitor	=	nil as FileSystemEventMonitor?
+    
     @IBOutlet var select_button: NSButton!
     @IBOutlet weak var go_button: NSButton!
     @IBOutlet var textbar: NSTextField!
@@ -75,6 +81,19 @@ class ViewController: NSViewController {
         print_running_app()
     }
     
+    @IBAction func do_eonil(_ sender: NSButton) {
+        print("pathname is " + pathname)
+        monitor = FileSystemEventMonitor(
+            pathsToWatch: [pathname],
+            latency: 1,
+            watchRoot: true,
+            queue: DispatchQueue.main) { (events: [FileSystemEvent])->() in
+                print(events)
+                print("MODIFICATION")
+                print(events.count)
+        }
+        //eonil_stuff(path: pathname)
+    }
 
 
 }

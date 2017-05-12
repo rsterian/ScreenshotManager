@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A572DCD6AA41DB1C8A68DB71FD1BB87054EFF60A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A572DCD6AA41DB1C8A68DB71FD1BB87054EFF60A" : 9223372036854775807,
+    "36160D83BA5F0FBBF1E4D427FCD25A45E887B855" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "236EF4C5-13EC-4A2A-B648-DEDD9D46E6B0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A572DCD6AA41DB1C8A68DB71FD1BB87054EFF60A" : "Screenshot%20Manager\/",
+    "36160D83BA5F0FBBF1E4D427FCD25A45E887B855" : "FileSystemEvents\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Screenshot Manager",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Screenshot Manager.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/eonil\/FileSystemEvents.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "36160D83BA5F0FBBF1E4D427FCD25A45E887B855"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/rsterian\/ScreenshotManager.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A572DCD6AA41DB1C8A68DB71FD1BB87054EFF60A"
+    }
+  ]
+}
