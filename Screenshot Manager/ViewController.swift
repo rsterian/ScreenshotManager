@@ -44,7 +44,7 @@ class ViewController: NSViewController {
     var pathname_desktop:String = ""
     var pathname_save_location:String = ""
     
-    @IBAction func press_sb(_ sender: NSButton) {
+    @IBAction func press_desktop_button(_ sender: NSButton) {
 //        if(pathname_input.stringValue != ""){
 //            let path:String = pathname_input.stringValue
 //            
@@ -102,7 +102,13 @@ class ViewController: NSViewController {
         } else {
             full = pathname_desktop + "/Screen Shot "
         }
-        print("pathname is " + pathname_desktop)
+        
+        if(pathname_save_location.characters.last != "/"){
+            pathname_save_location.append("/")
+        }
+        
+        print("source pathname is " + pathname_desktop)
+        print("destination pathname is " + pathname_save_location)
         monitor = FileSystemEventMonitor(
             pathsToWatch: [pathname_desktop],
             latency: 0,
@@ -117,8 +123,13 @@ class ViewController: NSViewController {
 //                print(full + get_format_time() + ".png")
 //                print("================")
                 
-                if(events[0].path == full + get_format_time() + ".png"){
-                    match_handler(path: full+get_format_time()+".png")
+                for i in events{
+                    if(i.path == full + get_format_time() + ".png"){
+                        match_handler(source: self.pathname_desktop,
+                                      dest: self.pathname_save_location,
+                                      file: full+get_format_time()+".png")
+                        break
+                    }
                 }
                 
         }

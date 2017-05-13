@@ -116,10 +116,33 @@ func get_format_time() -> String{
     return result
 }
 
-func match_handler(path: String){
-    print("It's a match at " + path)
+func match_handler(source: String, dest: String, file: String){
+    print("Going to move " + file + " from " + source + " to " + dest)
+    
     let workspace = NSWorkspace()
     let frontmost:String = workspace.frontmostApplication!.localizedName!
+    
+    let fm = FileManager()
+    let new_path:String = dest + frontmost
+    
+    if(!fm.fileExists(atPath: new_path)){
+        do{
+            try fm.createDirectory(atPath: new_path, withIntermediateDirectories: false, attributes: nil)
+        }catch{
+            print("ERROR")
+        }
+    }
+    
+    do{
+        try fm.moveItem(atPath: file, toPath: new_path + "/Screen Shot " + get_format_time())
+    } catch let error as NSError{
+        print(error.localizedFailureReason!)
+//        print(file)
+//        print(new_path + "/Screen Shot " + get_format_time())
+        print(error.localizedDescription)
+    }
+    
+    
     
     
 }
