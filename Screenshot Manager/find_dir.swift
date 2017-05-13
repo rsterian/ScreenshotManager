@@ -116,7 +116,7 @@ func get_format_time() -> String{
     return result
 }
 
-func match_handler(source: String, dest: String, file: String){
+func match_handler(source: String, dest: String, file: String, time:String){
     print("Going to move " + file + " from " + source + " to " + dest)
     
     let workspace = NSWorkspace()
@@ -133,13 +133,13 @@ func match_handler(source: String, dest: String, file: String){
         }
     }
     
-    if(fm.fileExists(atPath: new_path + "/Screen Shot " + get_format_time() + ".png")){
+    if(fm.fileExists(atPath: new_path + "/Screen Shot " + time + ".png")){
         print("didn't actually move this time")
         return
     }
     
     do{
-        try fm.moveItem(atPath: file, toPath: new_path + "/Screen Shot " + get_format_time() + ".png")
+        try fm.moveItem(atPath: file, toPath: new_path + "/Screen Shot " + time + ".png")
     } catch let error as NSError{
         print(error.localizedFailureReason!)
 //        print(file)
