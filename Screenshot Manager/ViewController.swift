@@ -123,14 +123,15 @@ class ViewController: NSViewController {
 //                print(full + get_format_time() + ".png")
 //                print("================")
                 let time:String = get_format_time()
+                print(time)
                 print(events.count)
                 for i in events{
                     print(i.path)
                     print(i.flag)
                     if(i.flag.description == "ItemRenamed"){
                         print("flag match")
-                    }
-                    if(i.path == full + time + ".png"){
+                    //}
+                    //if(i.path == full + time + ".png"){
                         match_handler(source: self.pathname_desktop,
                                       dest: self.pathname_save_location,
                                       file: full+time+".png",
