@@ -112,7 +112,7 @@ class ViewController: NSViewController {
         monitor = FileSystemEventMonitor(
             pathsToWatch: [pathname_desktop],
             latency: 0,
-            watchRoot: true,
+            watchRoot: false,
             queue: DispatchQueue.main) { (events: [FileSystemEvent])->() in
                 //print(events)
 //                print("================")
@@ -122,8 +122,10 @@ class ViewController: NSViewController {
 //                //print(events[0].flag)
 //                print(full + get_format_time() + ".png")
 //                print("================")
-                
+                print(events.count)
                 for i in events{
+                    print(i.path)
+                    print(i.flag)
                     if(i.path == full + get_format_time() + ".png"){
                         match_handler(source: self.pathname_desktop,
                                       dest: self.pathname_save_location,

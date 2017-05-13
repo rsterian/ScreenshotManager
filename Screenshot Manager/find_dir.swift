@@ -133,8 +133,13 @@ func match_handler(source: String, dest: String, file: String){
         }
     }
     
+    if(fm.fileExists(atPath: new_path + "/Screen Shot " + get_format_time() + ".png")){
+        print("didn't actually move this time")
+        return
+    }
+    
     do{
-        try fm.moveItem(atPath: file, toPath: new_path + "/Screen Shot " + get_format_time())
+        try fm.moveItem(atPath: file, toPath: new_path + "/Screen Shot " + get_format_time() + ".png")
     } catch let error as NSError{
         print(error.localizedFailureReason!)
 //        print(file)
