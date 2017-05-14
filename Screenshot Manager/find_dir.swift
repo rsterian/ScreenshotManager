@@ -116,8 +116,41 @@ func get_format_time() -> String{
     return result
 }
 
+//https://code.tutsplus.com/tutorials/swift-and-regular-expressions-swift--cms-26626
+func path_is_screenshot(path: String) -> Bool{
+    let path_components = path.components(separatedBy: "/")
+    print(path_components)
+    let ss_name = path_components[path_components.count - 1]
+    
+    let pat = "\\bScreen Shot \\d{4}\\-\\d{2}\\-\\d{2}\\ at\\ \\d{1,2}\\.\\d{2}\\.\\d{2}\\ (A|P)M\\.png\\b"
+    // (2):
+    let testStr = ss_name
+    // (3):
+    let regex = try! NSRegularExpression(pattern: pat, options: [])
+    // (4):
+    let matches = regex.matches(in: testStr, options: [], range: NSRange(location: 0, length: testStr.characters.count))
+    
+    return (matches.count == 1)
+}
+
+func get_time_from_path(path: String){
+    let path_components = path.components(separatedBy: "/")
+    print(path_components)
+    let ss_name = path_components[path_components.count - 1]
+
+    print("in get_time_from_path")
+    var time = ss_name
+    time.removeSubrange(time.startIndex..<time.index(time.startIndex, offsetBy: 12)) //remove up to time
+    time.removeSubrange(time.index(time.endIndex, offsetBy: -4)..<time.endIndex) //remove .png
+    print(time)
+}
+
 func match_handler(source: String, dest: String, file: String, time:String){
     print("Going to move " + file + " from " + source + " to " + dest)
+    
+    ////////
+    get_time_from_path(path: file)
+    ////////
     
     let workspace = NSWorkspace()
     let frontmost:String = workspace.frontmostApplication!.localizedName!
@@ -146,8 +179,4 @@ func match_handler(source: String, dest: String, file: String, time:String){
 //        print(new_path + "/Screen Shot " + get_format_time())
         print(error.localizedDescription)
     }
-    
-    
-    
-    
 }
