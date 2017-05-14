@@ -15,6 +15,15 @@ func compHandler(input: Int) -> Void{
     return
 }
 
+//https://gist.github.com/ericdke/fec20e6db9e0aa25e8ea
+func show_notification(ss_name:String, dest:String) -> Void {
+    let notification = NSUserNotification()
+    notification.title = ss_name + " moved"
+    notification.informativeText = "Moved to " + dest
+    notification.soundName = NSUserNotificationDefaultSoundName
+    NSUserNotificationCenter.default.deliver(notification)
+}
+
 func get_dir() -> String{
     let panel = NSOpenPanel()
     panel.title = "Choose a directory"
@@ -119,9 +128,10 @@ func get_format_time() -> String{
 //https://code.tutsplus.com/tutorials/swift-and-regular-expressions-swift--cms-26626
 func path_is_screenshot(path: String) -> Bool{
     let path_components = path.components(separatedBy: "/")
-    print(path_components)
+    //print(path_components)
     let ss_name = path_components[path_components.count - 1]
     
+    // (1): 
     let pat = "\\bScreen Shot \\d{4}\\-\\d{2}\\-\\d{2}\\ at\\ \\d{1,2}\\.\\d{2}\\.\\d{2}\\ (A|P)M\\.png\\b"
     // (2):
     let testStr = ss_name
@@ -136,7 +146,7 @@ func path_is_screenshot(path: String) -> Bool{
 func get_time_from_path(path: String) -> String{
     assert(path_is_screenshot(path: path))
     let path_components = path.components(separatedBy: "/")
-    print(path_components)
+    //print(path_components)
     let ss_name = path_components[path_components.count - 1]
 
     print("in get_time_from_path")
@@ -175,6 +185,7 @@ func match_handler(source: String, dest: String, file: String, time:String){
     
     do{
         try fm.moveItem(atPath: file, toPath: new_path + "/Screen Shot " + time + ".png")
+        show_notification(ss_name: file, dest: new_path)
     } catch let error as NSError{
         print(error.localizedFailureReason!)
 //        print(file)
