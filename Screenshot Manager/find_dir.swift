@@ -133,7 +133,8 @@ func path_is_screenshot(path: String) -> Bool{
     return (matches.count == 1)
 }
 
-func get_time_from_path(path: String){
+func get_time_from_path(path: String) -> String{
+    assert(path_is_screenshot(path: path))
     let path_components = path.components(separatedBy: "/")
     print(path_components)
     let ss_name = path_components[path_components.count - 1]
@@ -143,13 +144,14 @@ func get_time_from_path(path: String){
     time.removeSubrange(time.startIndex..<time.index(time.startIndex, offsetBy: 12)) //remove up to time
     time.removeSubrange(time.index(time.endIndex, offsetBy: -4)..<time.endIndex) //remove .png
     print(time)
+    return time
 }
 
 func match_handler(source: String, dest: String, file: String, time:String){
     print("Going to move " + file + " from " + source + " to " + dest)
     
     ////////
-    get_time_from_path(path: file)
+    //get_time_from_path(path: file)
     ////////
     
     let workspace = NSWorkspace()
