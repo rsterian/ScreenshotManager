@@ -717,19 +717,8 @@
                                     <action selector="press_gb:" target="XfG-lQ-9wD" id="hDc-EX-BOV"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pKn-Xp-0lO">
-                                <rect key="frame" x="-6" y="20" width="146" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="print_running_app" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BG0-x1-DCd">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="test_print_running_app:" target="XfG-lQ-9wD" id="wvt-dN-Xsb"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Roo-oQ-snV">
-                                <rect key="frame" x="-6" y="86" width="70" height="32"/>
+                                <rect key="frame" x="111" y="86" width="70" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Eonil" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zts-N2-eGN">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -737,17 +726,6 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="do_eonil:" target="XfG-lQ-9wD" id="jaE-57-P1r"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MMG-aB-Fio">
-                                <rect key="frame" x="-6" y="53" width="146" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="check_for_updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="U23-hN-WGc">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="test_check_for_updates:" target="XfG-lQ-9wD" id="zm9-PM-1ur"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e9e-Tx-8M8">
@@ -784,11 +762,20 @@ DQ
                                     <action selector="press_desktop_button:" target="XfG-lQ-9wD" id="yao-A2-zIM"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2N-mA-xdH">
+                                <rect key="frame" x="184" y="95" width="278" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Get notified when a screenshot is moved" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="1IW-fF-4Wy">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="desktop_select_button" destination="CXX-3H-BfZ" id="R1a-JZ-YiP"/>
                         <outlet property="go_button" destination="TDd-D5-5On" id="iCG-yq-1cd"/>
+                        <outlet property="notification_check" destination="l2N-mA-xdH" id="r2L-Va-oJI"/>
                         <outlet property="pathname_destination" destination="JO5-oU-0YD" id="q1a-M4-RRv"/>
                         <outlet property="pathname_input" destination="1XS-Vg-iU5" id="D0A-JR-8vo"/>
                         <outlet property="save_location_select_button" destination="e9e-Tx-8M8" id="lIM-bm-wGx"/>

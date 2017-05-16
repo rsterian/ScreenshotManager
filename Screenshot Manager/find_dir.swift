@@ -65,7 +65,7 @@ func make_temp(path: String){
     print("in make_temp")
     
     let fm = FileManager()
-    let full_path:String = path + "/temp/"
+    let full_path:String = path + "/Screenshot Manager Parent/"
     if(fm.fileExists(atPath: full_path)){
         //temp already exists
         print("path already exists, but that's okay")
@@ -157,7 +157,7 @@ func get_time_from_path(path: String) -> String{
     return time
 }
 
-func match_handler(source: String, dest: String, file: String, time:String){
+func match_handler(source: String, dest: String, file: String, time:String, notify:Bool){
     print("Going to move " + file + " from " + source + " to " + dest)
     
     ////////
@@ -185,7 +185,9 @@ func match_handler(source: String, dest: String, file: String, time:String){
     
     do{
         try fm.moveItem(atPath: file, toPath: new_path + "/Screen Shot " + time + ".png")
-        show_notification(ss_name: file, dest: new_path)
+        if(notify){
+            show_notification(ss_name: file, dest: new_path)
+        }
     } catch let error as NSError{
         print(error.localizedFailureReason!)
 //        print(file)

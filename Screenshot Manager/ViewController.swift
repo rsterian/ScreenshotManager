@@ -40,6 +40,7 @@ class ViewController: NSViewController {
     //@IBOutlet var textbar: NSTextField!
     @IBOutlet var pathname_input: NSTextField!
     @IBOutlet var pathname_destination: NSTextField!
+    @IBOutlet var notification_check: NSButton!
     
     var pathname_desktop:String = ""
     var pathname_save_location:String = ""
@@ -77,6 +78,9 @@ class ViewController: NSViewController {
     }
     
     
+    //TODO
+    //comment out or remove this function! 
+    //it's not needed!!!
     @IBAction func press_gb(_ sender: NSButton) {
         print("pressed go!")
         
@@ -96,12 +100,12 @@ class ViewController: NSViewController {
 //    }
     
     @IBAction func do_eonil(_ sender: NSButton) {
-        var full:String
-        if(pathname_desktop.characters.last == "/"){
-            full = pathname_desktop + "Screen Shot "
-        } else {
-            full = pathname_desktop + "/Screen Shot "
-        }
+//        var full:String
+//        if(pathname_desktop.characters.last == "/"){
+//            full = pathname_desktop + "Screen Shot "
+//        } else {
+//            full = pathname_desktop + "/Screen Shot "
+//        }
         
         if(pathname_save_location.characters.last != "/"){
             pathname_save_location.append("/")
@@ -134,13 +138,15 @@ class ViewController: NSViewController {
                         match_handler(source: self.pathname_desktop,
                                       dest: self.pathname_save_location,
                                       file: i.path ,
-                                      time: get_time_from_path(path: i.path))
+                                      time: get_time_from_path(path: i.path),
+                                      notify: self.notification_check.state == 1)
                         break
                     }
                 }
                 
         }
         //get_format_time()
+        NSApp.miniaturizeAll(self)
     }
     
     //TODO:
