@@ -152,9 +152,21 @@ func get_time_from_path(path: String) -> String{
     print("in get_time_from_path")
     var time = ss_name
     time.removeSubrange(time.startIndex..<time.index(time.startIndex, offsetBy: 12)) //remove up to time
+    
+//    let last_dot = time.range(of: ".", options: .backwards)
+//    print(last_dot)
+    
     time.removeSubrange(time.index(time.endIndex, offsetBy: -4)..<time.endIndex) //remove .png
     print(time)
     return time
+    
+    
+    
+//    let text = "123045780984"
+//    if let rangeOfZero = text.range(of: "0", options: .backwards) {
+//        // Found a zero
+//        let suffix = String(text.characters.suffix(from: rangeOfZero.upperBound)) // "984"
+//    }
 }
 
 func match_handler(source: String, dest: String, file: String, time:String, notify:Bool){
@@ -178,12 +190,15 @@ func match_handler(source: String, dest: String, file: String, time:String, noti
         }
     }
     
+    //change the line below to be atPath: file
     if(fm.fileExists(atPath: new_path + "/Screen Shot " + time + ".png")){
         print("didn't actually move this time")
         return
     }
     
     do{
+        //change the toPath argument to be fine with .png 1 or some other int
+        //maybe new function to just get  from Screen Shot on...?
         try fm.moveItem(atPath: file, toPath: new_path + "/Screen Shot " + time + ".png")
         if(notify){
             show_notification(ss_name: file, dest: new_path)
