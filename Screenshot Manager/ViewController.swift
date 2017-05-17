@@ -35,6 +35,7 @@ class ViewController: NSViewController {
     private var	monitor	=	nil as FileSystemEventMonitor?
     private var frontmost_monitor = nil as FileSystemEventMonitor?
     var frontmost_app = ""
+    var app_queue:[String] = []
     
     @IBOutlet var desktop_select_button: NSButton!
     @IBOutlet var save_location_select_button: NSButton!
@@ -88,7 +89,7 @@ class ViewController: NSViewController {
         }
         
         let workspace = NSWorkspace()
-        var first:Bool = true
+        
         
         print("source pathname is " + pathname_desktop)
         print("destination pathname is " + pathname_save_location)
@@ -97,18 +98,13 @@ class ViewController: NSViewController {
             latency: 0,
             watchRoot: false,
             queue: DispatchQueue.main) { (fm_events: [FileSystemEvent])->() in
-                
-                if(first){
-                    print("first is true, updating frontmost_app")
-                    self.frontmost_app = workspace.frontmostApplication!.localizedName!
-                    first = false
-                    //here's a bug, first un-sets itself on a .DS_Store modification
-                    if (fm_events[0].flag.description == "ItemInodeMetaMod, ItemModified"){
-                        print("GOTCHA, found it")
-                        first = true
+                for i in fm_events{
+                    if(i.flag.description == "ItemRenamed, ItemXattrMod" && path_is_screenshot(path: i.path)){
+                        self.app_queue.append(workspace.frontmostApplication!.localizedName!)
                     }
-                    
                 }
+                print(self.app_queue)
+
         }
         
         
@@ -127,19 +123,17 @@ class ViewController: NSViewController {
                     if(i.flag.description == "ItemRenamed, ItemXattrMod" && path_is_screenshot(path: i.path)){
                         print("flag match")
                         
-                        var did_move = match_handler(source: self.pathname_desktop,
+                        match_handler(source: self.pathname_desktop,
                                       dest: self.pathname_save_location,
                                       file: i.path ,
                                       time: get_time_from_path(path: i.path),
                                       notify: self.notification_check.state == 1,
                                       //frontmost: workspace.frontmostApplication!.localizedName!)
-                                      frontmost: self.frontmost_app)
-                        
-                        if(did_move){
-                            first = true
-                        }
-                        //first = true
-                        //break
+                                      //frontmost: self.frontmost_app)
+                                      frontmost: self.app_queue.remove(at: 0))
+
+                        print(self.app_queue)
+
                     }
                 }
         }

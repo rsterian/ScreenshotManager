@@ -166,7 +166,7 @@ func get_time_from_path(path: String) -> String{
 //    }
 }
 
-func match_handler(source: String, dest: String, file: String, time:String, notify:Bool, frontmost:String) -> Bool{
+func match_handler(source: String, dest: String, file: String, time:String, notify:Bool, frontmost:String){
     
     ////////
     //get_time_from_path(path: file)
@@ -191,7 +191,7 @@ func match_handler(source: String, dest: String, file: String, time:String, noti
     
     if(fm.fileExists(atPath: new_path + "/Screen Shot " + time + ".png")){
         print("didn't actually move this time")
-        return true
+        return
     }
     
     do{
@@ -201,12 +201,12 @@ func match_handler(source: String, dest: String, file: String, time:String, noti
         if(notify){
             show_notification(ss_name: file, dest: new_path)
         }
-        return true
+        return 
     } catch let error as NSError{
         print(error.localizedFailureReason!)
 //        print(file)
 //        print(new_path + "/Screen Shot " + get_format_time())
         print(error.localizedDescription)
     }
-    return false
+    return
 }
