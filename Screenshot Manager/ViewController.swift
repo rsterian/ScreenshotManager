@@ -103,6 +103,7 @@ class ViewController: NSViewController {
                         self.app_queue.append(workspace.frontmostApplication!.localizedName!)
                     }
                 }
+                print("fast")
                 print(self.app_queue)
 
         }
@@ -132,6 +133,7 @@ class ViewController: NSViewController {
                                       //frontmost: self.frontmost_app)
                                       frontmost: self.app_queue.remove(at: 0))
 
+                        print("slow")
                         print(self.app_queue)
 
                     }

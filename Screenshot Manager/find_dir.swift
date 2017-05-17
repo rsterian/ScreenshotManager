@@ -189,7 +189,7 @@ func match_handler(source: String, dest: String, file: String, time:String, noti
         }
     }
     
-    if(fm.fileExists(atPath: new_path + "/Screen Shot " + time + ".png")){
+    if(fm.fileExists(atPath: new_path + "/Screenshot " + time + ".png")){
         print("didn't actually move this time")
         return
     }
@@ -197,7 +197,7 @@ func match_handler(source: String, dest: String, file: String, time:String, noti
     do{
         //change the toPath argument to be fine with .png 1 or some other int
         //maybe new function to just get  from Screen Shot on...?
-        try fm.moveItem(atPath: file, toPath: new_path + "/Screen Shot " + time + ".png")
+        try fm.moveItem(atPath: file, toPath: new_path + "/Screenshot " + time + ".png")
         if(notify){
             show_notification(ss_name: file, dest: new_path)
         }
