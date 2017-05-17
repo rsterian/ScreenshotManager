@@ -107,6 +107,7 @@ class ViewController: NSViewController {
                         print("GOTCHA, found it")
                         first = true
                     }
+                    
                 }
         }
         
