@@ -132,7 +132,7 @@ func path_is_screenshot(path: String) -> Bool{
     let ss_name = path_components[path_components.count - 1]
     
     // (1): 
-    let pat = "\\bScreen Shot \\d{4}\\-\\d{2}\\-\\d{2}\\ at\\ \\d{1,2}\\.\\d{2}\\.\\d{2}\\ (A|P)M\\.png\\b"
+    let pat = "\\bScreen Shot \\d{4}\\-\\d{2}\\-\\d{2}\\ at\\ \\d{1,2}\\.\\d{2}\\.\\d{2}\\ (A|P)M\\ ?\\d*\\.png\\b"
     // (2):
     let testStr = ss_name
     // (3):
@@ -152,9 +152,6 @@ func get_time_from_path(path: String) -> String{
     print("in get_time_from_path")
     var time = ss_name
     time.removeSubrange(time.startIndex..<time.index(time.startIndex, offsetBy: 12)) //remove up to time
-    
-//    let last_dot = time.range(of: ".", options: .backwards)
-//    print(last_dot)
     
     time.removeSubrange(time.index(time.endIndex, offsetBy: -4)..<time.endIndex) //remove .png
     print(time)
@@ -190,7 +187,6 @@ func match_handler(source: String, dest: String, file: String, time:String, noti
         }
     }
     
-    //change the line below to be atPath: file
     if(fm.fileExists(atPath: new_path + "/Screen Shot " + time + ".png")){
         print("didn't actually move this time")
         return

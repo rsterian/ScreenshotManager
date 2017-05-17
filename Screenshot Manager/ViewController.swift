@@ -46,15 +46,6 @@ class ViewController: NSViewController {
     var pathname_save_location:String = ""
     
     @IBAction func press_desktop_button(_ sender: NSButton) {
-//        if(pathname_input.stringValue != ""){
-//            let path:String = pathname_input.stringValue
-//            
-//            textbar.stringValue = "You entered " + path
-//            
-//        } else {
-//            textbar.stringValue = "blank"
-//        }
-        
         pathname_desktop = get_dir()
         if(pathname_desktop == "ERROR"){
             exit(EXIT_FAILURE)
@@ -81,31 +72,14 @@ class ViewController: NSViewController {
     //TODO
     //comment out or remove this function! 
     //it's not needed!!!
-    @IBAction func press_gb(_ sender: NSButton) {
-        print("pressed go!")
-        
-        pathname_desktop = pathname_input.stringValue
-        make_temp(path: pathname_desktop)
-    }
-
-    
-//    @IBAction func test_check_for_updates(_ sender: NSButton) {
-//        pathname = pathname_input.stringValue
-//        check_for_updates(path: pathname)
-//    }
-//    
-//    @IBAction func test_print_running_app(_ sender: NSButton) {
-//        //pathname = pathname_input.stringValue
-//        print_running_app()
+//    @IBAction func press_gb(_ sender: NSButton) {
+//        print("pressed go!")
+//        
+//        pathname_desktop = pathname_input.stringValue
+//        make_temp(path: pathname_desktop)
 //    }
     
     @IBAction func do_eonil(_ sender: NSButton) {
-//        var full:String
-//        if(pathname_desktop.characters.last == "/"){
-//            full = pathname_desktop + "Screen Shot "
-//        } else {
-//            full = pathname_desktop + "/Screen Shot "
-//        }
         
         if(pathname_save_location.characters.last != "/"){
             pathname_save_location.append("/")
@@ -115,24 +89,17 @@ class ViewController: NSViewController {
         print("destination pathname is " + pathname_save_location)
         monitor = FileSystemEventMonitor(
             pathsToWatch: [pathname_desktop],
-            latency: 0,
+            latency: 1,
             watchRoot: false,
             queue: DispatchQueue.main) { (events: [FileSystemEvent])->() in
-                //print(events)
-//                print("================")
-//                print("MODIFICATION")
-//                //print(events.count)
-//                print(events[0].path)
-//                //print(events[0].flag)
-//                print(full + get_format_time() + ".png")
-//                print("================")
-//                let time:String = get_format_time()
-//                print(time)
+
                 print(events.count)
                 for i in events{
-//                    print(i.path)
-//                    print(i.flag)
-                    if(i.flag.description == "ItemRenamed" && path_is_screenshot(path: i.path)){
+                    print(i.path)
+                    print(i.flag)
+                    print(i.flag.description == "ItemRenamed, ItemXattrMod")
+
+                    if(i.flag.description == "ItemRenamed, ItemXattrMod" && path_is_screenshot(path: i.path)){
                         print("flag match")
                         
                         match_handler(source: self.pathname_desktop,
@@ -140,23 +107,14 @@ class ViewController: NSViewController {
                                       file: i.path ,
                                       time: get_time_from_path(path: i.path),
                                       notify: self.notification_check.state == 1)
-                        break
+                        //break
                     }
                 }
-                
         }
         //get_format_time()
         NSApp.miniaturizeAll(self)
+        //TODO uncomment above
     }
-    
-    //TODO:
-    //get frontmost application on FSEvent (line 91ish)
-    //find new screenshot on desktop DONE
-    //move screenshot to appropriate directory based on app
-    //      create directory if it doesn't exist
-    //clean up
-    //      real buttons, consolidate functions
-    //doublecheck that the timestamps are correct DONE?
 
 }
 
