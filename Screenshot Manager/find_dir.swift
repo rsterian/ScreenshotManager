@@ -166,8 +166,7 @@ func get_time_from_path(path: String) -> String{
 //    }
 }
 
-func match_handler(source: String, dest: String, file: String, time:String, notify:Bool, frontmost:String){
-    print("Going to move " + file + " from " + source + " to " + dest)
+func match_handler(source: String, dest: String, file: String, time:String, notify:Bool, frontmost:String) -> Bool{
     
     ////////
     //get_time_from_path(path: file)
@@ -179,6 +178,9 @@ func match_handler(source: String, dest: String, file: String, time:String, noti
     let fm = FileManager()
     let new_path:String = dest + frontmost
     
+    print("Going to move " + file + " from " + source + " to " + new_path)
+
+    
     if(!fm.fileExists(atPath: new_path)){
         do{
             try fm.createDirectory(atPath: new_path, withIntermediateDirectories: false, attributes: nil)
@@ -189,7 +191,7 @@ func match_handler(source: String, dest: String, file: String, time:String, noti
     
     if(fm.fileExists(atPath: new_path + "/Screen Shot " + time + ".png")){
         print("didn't actually move this time")
-        return
+        return true
     }
     
     do{
@@ -199,10 +201,12 @@ func match_handler(source: String, dest: String, file: String, time:String, noti
         if(notify){
             show_notification(ss_name: file, dest: new_path)
         }
+        return true
     } catch let error as NSError{
         print(error.localizedFailureReason!)
 //        print(file)
 //        print(new_path + "/Screen Shot " + get_format_time())
         print(error.localizedDescription)
     }
+    return false
 }

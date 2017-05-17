@@ -33,6 +33,8 @@ class ViewController: NSViewController {
     }
     
     private var	monitor	=	nil as FileSystemEventMonitor?
+    private var frontmost_monitor = nil as FileSystemEventMonitor?
+    var frontmost_app = ""
     
     @IBOutlet var desktop_select_button: NSButton!
     @IBOutlet var save_location_select_button: NSButton!
@@ -86,9 +88,29 @@ class ViewController: NSViewController {
         }
         
         let workspace = NSWorkspace()
+        var first:Bool = true
         
         print("source pathname is " + pathname_desktop)
         print("destination pathname is " + pathname_save_location)
+        frontmost_monitor = FileSystemEventMonitor(
+            pathsToWatch: [pathname_desktop],
+            latency: 0,
+            watchRoot: false,
+            queue: DispatchQueue.main) { (fm_events: [FileSystemEvent])->() in
+                
+                if(first){
+                    print("first is true, updating frontmost_app")
+                    self.frontmost_app = workspace.frontmostApplication!.localizedName!
+                    first = false
+                    //here's a bug, first un-sets itself on a .DS_Store modification
+                    if (fm_events[0].flag.description == "ItemInodeMetaMod, ItemModified"){
+                        print("GOTCHA, found it")
+                        first = true
+                    }
+                }
+        }
+        
+        
         monitor = FileSystemEventMonitor(
             pathsToWatch: [pathname_desktop],
             latency: 1,
@@ -99,23 +121,29 @@ class ViewController: NSViewController {
                 for i in events{
                     print(i.path)
                     print(i.flag)
-                    print(i.flag.description == "ItemRenamed, ItemXattrMod")
+                    //print(i.flag.description == "ItemRenamed, ItemXattrMod")
 
                     if(i.flag.description == "ItemRenamed, ItemXattrMod" && path_is_screenshot(path: i.path)){
                         print("flag match")
                         
-                        match_handler(source: self.pathname_desktop,
+                        var did_move = match_handler(source: self.pathname_desktop,
                                       dest: self.pathname_save_location,
                                       file: i.path ,
                                       time: get_time_from_path(path: i.path),
                                       notify: self.notification_check.state == 1,
-                                      frontmost: workspace.frontmostApplication!.localizedName!)
+                                      //frontmost: workspace.frontmostApplication!.localizedName!)
+                                      frontmost: self.frontmost_app)
+                        
+                        if(did_move){
+                            first = true
+                        }
+                        //first = true
                         //break
                     }
                 }
         }
         //get_format_time()
-        NSApp.miniaturizeAll(self)
+        //NSApp.miniaturizeAll(self)
         //TODO uncomment above
     }
 
