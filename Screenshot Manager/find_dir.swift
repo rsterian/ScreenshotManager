@@ -166,15 +166,15 @@ func get_time_from_path(path: String) -> String{
 //    }
 }
 
-func match_handler(source: String, dest: String, file: String, time:String, notify:Bool){
+func match_handler(source: String, dest: String, file: String, time:String, notify:Bool, frontmost:String){
     print("Going to move " + file + " from " + source + " to " + dest)
     
     ////////
     //get_time_from_path(path: file)
     ////////
     
-    let workspace = NSWorkspace()
-    let frontmost:String = workspace.frontmostApplication!.localizedName!
+//    let workspace = NSWorkspace()
+//    let frontmost:String = workspace.frontmostApplication!.localizedName!
     
     let fm = FileManager()
     let new_path:String = dest + frontmost

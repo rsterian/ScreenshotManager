@@ -85,6 +85,8 @@ class ViewController: NSViewController {
             pathname_save_location.append("/")
         }
         
+        let workspace = NSWorkspace()
+        
         print("source pathname is " + pathname_desktop)
         print("destination pathname is " + pathname_save_location)
         monitor = FileSystemEventMonitor(
@@ -106,7 +108,8 @@ class ViewController: NSViewController {
                                       dest: self.pathname_save_location,
                                       file: i.path ,
                                       time: get_time_from_path(path: i.path),
-                                      notify: self.notification_check.state == 1)
+                                      notify: self.notification_check.state == 1,
+                                      frontmost: workspace.frontmostApplication!.localizedName!)
                         //break
                     }
                 }
