@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		740867941EC564FE007AF6F2 /* EonilFileSystemEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7408678D1EC5645F007AF6F2 /* EonilFileSystemEvents.framework */; };
 		740CF8971EC42A0600345C19 /* find_dir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740CF8961EC42A0600345C19 /* find_dir.swift */; };
 		741E94031EC1373800DF93C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741E94021EC1373800DF93C8 /* AppDelegate.swift */; };
 		741E94051EC1373800DF93C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741E94041EC1373800DF93C8 /* ViewController.swift */; };
@@ -89,7 +88,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				747321811ECA95DF00BEE235 /* EonilFileSystemEvents.framework in Frameworks */,
-				740867941EC564FE007AF6F2 /* EonilFileSystemEvents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
