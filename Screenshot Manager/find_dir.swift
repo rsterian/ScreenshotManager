@@ -15,8 +15,6 @@ func show_notification(ss_name:String, dest:String) -> Void {
     let notification = NSUserNotification()
     let comps = dest.components(separatedBy: "/")
     notification.title = "Screenshot saved in " + comps[comps.count - 2] + "/" + comps.last!
-    //notification.title = ss_name + " moved"
-    //notification.informativeText = "Moved to " + dest
     notification.soundName = NSUserNotificationDefaultSoundName
     NSUserNotificationCenter.default.deliver(notification)
 }
@@ -57,13 +55,9 @@ func path_is_screenshot(path: String) -> Bool{
     let path_components = path.components(separatedBy: "/")
     let ss_name = path_components[path_components.count - 1]
     
-    // (1): 
     let pat = "\\bScreen Shot \\d{4}\\-\\d{2}\\-\\d{2}\\ at\\ \\d{1,2}\\.\\d{2}\\.\\d{2}\\ (A|P)M\\ ?\\d*\\.png\\b"
-    // (2):
     let testStr = ss_name
-    // (3):
     let regex = try! NSRegularExpression(pattern: pat, options: [])
-    // (4):
     let matches = regex.matches(in: testStr, options: [], range: NSRange(location: 0, length: testStr.characters.count))
     
     return (matches.count == 1)
