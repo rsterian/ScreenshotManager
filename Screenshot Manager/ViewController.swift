@@ -3,7 +3,7 @@
 //  Screenshot Manager
 //
 //  Created by Riley Sterian on 5/8/17.
-//  Copyright © 2017 rileyq. All rights reserved.
+//  Copyright © 2017 Riley Sterian. All rights reserved.
 //
 
 //  Using https://github.com/eonil/FileSystemEvents
@@ -33,6 +33,9 @@ class ViewController: NSViewController {
     }
     
     private var	monitor	=	nil as FileSystemEventMonitor?
+    private var frontmost_monitor = nil as FileSystemEventMonitor?
+    var frontmost_app = ""
+    var app_queue:[String] = []
     
     @IBOutlet var desktop_select_button: NSButton!
     @IBOutlet var save_location_select_button: NSButton!
@@ -87,8 +90,25 @@ class ViewController: NSViewController {
         
         let workspace = NSWorkspace()
         
+        
         print("source pathname is " + pathname_desktop)
         print("destination pathname is " + pathname_save_location)
+        frontmost_monitor = FileSystemEventMonitor(
+            pathsToWatch: [pathname_desktop],
+            latency: 0,
+            watchRoot: false,
+            queue: DispatchQueue.main) { (fm_events: [FileSystemEvent])->() in
+                for i in fm_events{
+                    if(i.flag.description == "ItemRenamed, ItemXattrMod" && path_is_screenshot(path: i.path)){
+                        self.app_queue.append(workspace.frontmostApplication!.localizedName!)
+                    }
+                }
+                print("fast")
+                print(self.app_queue)
+
+        }
+        
+        
         monitor = FileSystemEventMonitor(
             pathsToWatch: [pathname_desktop],
             latency: 1,
@@ -99,7 +119,7 @@ class ViewController: NSViewController {
                 for i in events{
                     print(i.path)
                     print(i.flag)
-                    print(i.flag.description == "ItemRenamed, ItemXattrMod")
+                    //print(i.flag.description == "ItemRenamed, ItemXattrMod")
 
                     if(i.flag.description == "ItemRenamed, ItemXattrMod" && path_is_screenshot(path: i.path)){
                         print("flag match")
@@ -109,13 +129,18 @@ class ViewController: NSViewController {
                                       file: i.path ,
                                       time: get_time_from_path(path: i.path),
                                       notify: self.notification_check.state == 1,
-                                      frontmost: workspace.frontmostApplication!.localizedName!)
-                        //break
+                                      //frontmost: workspace.frontmostApplication!.localizedName!)
+                                      //frontmost: self.frontmost_app)
+                                      frontmost: self.app_queue.remove(at: 0))
+
+                        print("slow")
+                        print(self.app_queue)
+
                     }
                 }
         }
         //get_format_time()
-        NSApp.miniaturizeAll(self)
+        //NSApp.miniaturizeAll(self)
         //TODO uncomment above
     }
 
