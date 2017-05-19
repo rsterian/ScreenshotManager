@@ -13,8 +13,10 @@ import EonilFileSystemEvents
 //https://gist.github.com/ericdke/fec20e6db9e0aa25e8ea
 func show_notification(ss_name:String, dest:String) -> Void {
     let notification = NSUserNotification()
-    notification.title = ss_name + " moved"
-    notification.informativeText = "Moved to " + dest
+    let comps = dest.components(separatedBy: "/")
+    notification.title = "Screenshot saved in " + comps[comps.count - 2] + "/" + comps.last!
+    //notification.title = ss_name + " moved"
+    //notification.informativeText = "Moved to " + dest
     notification.soundName = NSUserNotificationDefaultSoundName
     NSUserNotificationCenter.default.deliver(notification)
 }
