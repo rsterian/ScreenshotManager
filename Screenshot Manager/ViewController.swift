@@ -3,7 +3,7 @@
 //  Screenshot Manager
 //
 //  Created by Riley Sterian on 5/8/17.
-//  Copyright © 2017 rileyq. All rights reserved.
+//  Copyright © 2017 Riley Sterian. All rights reserved.
 //
 
 //  Using https://github.com/eonil/FileSystemEvents

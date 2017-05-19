@@ -182,6 +182,7 @@
 				TargetAttributes = {
 					741E93FE1EC1373700DF93C8 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = WZ38EN5Z7X;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -387,7 +388,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Screenshot Manager/Screenshot Manager.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WZ38EN5Z7X;
 				INFOPLIST_FILE = "Screenshot Manager/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rileyq.Screenshot-Manager";
@@ -402,7 +405,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Screenshot Manager/Screenshot Manager.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WZ38EN5Z7X;
 				INFOPLIST_FILE = "Screenshot Manager/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rileyq.Screenshot-Manager";
